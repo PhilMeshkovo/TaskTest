@@ -9,31 +9,34 @@ public class Results {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false, updatable = false)
-    private long id;
+    private Integer id;
 
-    @Column
+    @Column(name = "a_number")
     private int a;
 
-    @Column
+    @Column(name = "b_number")
     private int b;
 
-    @Column
+    @Column(name = "c_number")
     private int c;
 
-    @Column
+    @Column(name = "d_number")
     private double D;
 
     @Column(name = "answer_first")
-    private double answerFirst;
+    private float answerFirst;
 
     @Column(name = "answer_second")
-    private double answerSecond;
+    private float answerSecond;
+
+    public Results() {
+    }
 
     public long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -73,7 +76,7 @@ public class Results {
         return answerFirst;
     }
 
-    public void setAnswerFirst(double answerFirst) {
+    public void setAnswerFirst(float answerFirst) {
         this.answerFirst = answerFirst;
     }
 
@@ -81,7 +84,7 @@ public class Results {
         return answerSecond;
     }
 
-    public void setAnswerSecond(double answerSecond) {
+    public void setAnswerSecond(float answerSecond) {
         this.answerSecond = answerSecond;
     }
 }

@@ -1,6 +1,6 @@
 package service;
 
-import hibernate.ResultRepo;
+import repo.ResultRepo;
 
 public class MathService {
     public double[] compute(String first, String second, String third) throws Exception {
@@ -14,14 +14,19 @@ public class MathService {
         ResultRepo repo = new ResultRepo();
         if (d == 0) {
             double answer = calculationFormula(a, b, c);
-            double[] responce = {d, answer, -answer};
-            return responce;
+            double[] response = {d, answer, -answer};
+            float answerFirstToDB = Float.parseFloat(String.valueOf(answer));
+            float answerSecondToDB = Float.parseFloat(String.valueOf(-answer));
+            repo.insertData(a, b, c, d, answerFirstToDB, answerSecondToDB);
+            return response;
         } else if (d > 0) {
             double answerFirst = calculationFormula(a, b, c);
             double answerSecond = (-Math.sqrt(d) - b) / (2 * a);
-            double[] responce = {d, answerFirst, answerSecond};
-            repo.insertData(a, b, c, d, answerFirst, answerSecond);
-            return responce;
+            double[] response = {d, answerFirst, answerSecond};
+            float answerFirstToDB = Float.parseFloat(String.valueOf(answerFirst));
+            float answerSecondToDB = Float.parseFloat(String.valueOf(answerSecond));
+            repo.insertData(a, b, c, d, answerFirstToDB, answerSecondToDB);
+            return response;
         } else {
             throw new Exception("Exception: D < 0");
         }
